@@ -299,11 +299,6 @@ if __name__ == "__main__":
 
           return x, y
 
-  # simple launch:
-  # python "name".py
-  # DDP launch for multiple GPUs:
-  # torchrun --standalone --nproc_per_node=8 "name".py
-
   # run the training loop
   import torch.distributed as dist
   from torch.distributed import init_process_group, destroy_process_group
@@ -353,8 +348,7 @@ if __name__ == "__main__":
   train_loader = DataLoaderLite(B=B, T=T, process_rank=ddp_rank, num_processes=ddp_world_size, split='train')
   val_loader = DataLoaderLite(B=B, T=T, process_rank=ddp_rank, num_processes=ddp_world_size, split='val')
 
-  #torch.set_float32_matmul_precision('high')
-  # this does not work for t4 gpu
+  torch.set_float32_matmul_precision('high')
 
   torch.manual_seed(1337)
   torch.cuda.manual_seed(1337)
@@ -397,9 +391,9 @@ if __name__ == "__main__":
   for step in range(max_steps):
       t0 = time.time()
       
+      # evaluate model
       if step % 100 == 0:
         model.eval()
-        #val_loader.reset()
         with torch.inference_mode():
           val_loss_accum = 0.0
           val_loss_steps = 20
