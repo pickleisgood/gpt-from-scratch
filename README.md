@@ -4,7 +4,9 @@ A culmination of everything I've learned in Andrej Karpathy's makemore series an
 
 A high-performance implementation of GPT-2 (124M parameters) from scratch in PyTorch, trained on the FineWeb-Edu dataset with modern optimizations including RoPE (rotary positional embeddings).
 
-<img width="570" height="458" alt="image" src="https://github.com/user-attachments/assets/c0178bde-4f3e-453a-b3a9-e04f32d3b6c8" />
+<p align="center">
+  <img width="570" height="458" alt="image" src="https://github.com/user-attachments/assets/c0178bde-4f3e-453a-b3a9-e04f32d3b6c8" />
+</p>
 
 
 ### 1. Prepare Dataset
