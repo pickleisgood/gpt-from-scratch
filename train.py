@@ -92,7 +92,7 @@ class CausalSelfAttention(nn.Module):
         v = v.view(B, T, self.n_head, head_size).transpose(1, 2) # (B, nh, T, hs)
 
         # manually set RoPe idx if kv_cache is present
-        # mus get length of time dimention of element in kv_cache
+        # must get length of time dimention of element in kv_cache
         idx = kv_cache[0].shape[2] if kv_cache is not None else None
         
         # apply RoPe
